@@ -47,10 +47,15 @@ public class PacienteServiceImpl implements PacienteService {
             paciente.setIdPaciente(id);
             return save(paciente);
         }else{
+            //throw new Exception("Error)
             return new Paciente();
         }
 
     }
 
-
+    @Override
+    public boolean deleteById(Integer id) {
+        pacienteRepository.deleteById(id);
+        return true;
+    }
 }
