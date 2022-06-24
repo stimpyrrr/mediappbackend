@@ -1,6 +1,8 @@
 package com.escalab.mediappbackend.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -10,6 +12,7 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//IDENTITY en sql es autoincrementable
     private Integer idPaciente; //id_paciente
+    @Size(min = 3, max = 50, message = "El nombre no cumple con los valores especificados")
     @Column(name = "nombres", length = 70)// si no se escribe esta linea, se agregará la columna a la BD con el nombre de la variable "nombres"
     private String nombres;
     @Column(name = "apellidos", length = 70)
@@ -20,6 +23,8 @@ public class Paciente {
     private String direccion;
     @Column(name = "telefono")
     private String telefono;
+
+    @Email
     @Column(name = "email")
     private String email;
 
@@ -27,6 +32,13 @@ public class Paciente {
     //private String purchasedOrder; //la bd me lo reconocerá como purchased_order (Camel Case)
 
 
+    public Integer getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(Integer idPaciente) {
+        this.idPaciente = idPaciente;
+    }
 
     public String getNombres() {
         return nombres;
